@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29418.71
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel", "AdminPanel\AdminPanel.csproj", "{79F91EFD-E32E-4B3A-981F-D1AD1E212295}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdminPanel.Tests", "AdminPanel.Tests\AdminPanel.Tests.csproj", "{9776686A-F7B5-425A-B42E-675A45409F0E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{79F91EFD-E32E-4B3A-981F-D1AD1E212295}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{79F91EFD-E32E-4B3A-981F-D1AD1E212295}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{79F91EFD-E32E-4B3A-981F-D1AD1E212295}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{79F91EFD-E32E-4B3A-981F-D1AD1E212295}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9776686A-F7B5-425A-B42E-675A45409F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9776686A-F7B5-425A-B42E-675A45409F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9776686A-F7B5-425A-B42E-675A45409F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9776686A-F7B5-425A-B42E-675A45409F0E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {9EE56061-F683-4188-8BC2-F5CB5A8E6C2C}
+	EndGlobalSection
+EndGlobal
