@@ -132,6 +132,7 @@
     <Compile Include="Controllers\CountriesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\RegionsController.cs" />
+    <Compile Include="Controllers\ToursController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -233,6 +234,11 @@
     <Content Include="Views\Cities\Delete.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
+    <Content Include="Views\Tours\Create.cshtml" />
+    <Content Include="Views\Tours\Delete.cshtml" />
+    <Content Include="Views\Tours\Details.cshtml" />
+    <Content Include="Views\Tours\Edit.cshtml" />
+    <Content Include="Views\Tours\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
