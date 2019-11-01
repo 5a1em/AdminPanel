@@ -25,6 +25,9 @@
                 </div>
                 <!-- /.box-header -->
                 <div class="box-body">
+                    <p>
+                        @Html.ActionLink("Создать новый", "Create")
+                    </p>
                     <table id="example" class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -39,7 +42,7 @@
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                     <td>
                                         @Html.ActionLink("Редактировать", "Edit", new { id = item.CountryId }) |
-                                        <a href="" onclick="Delete('@item.CountryId')">Удалить</a>          <!-- Dont work -->             
+                                        <a href="" onclick="Delete('@item.CountryId')">Удалить</a>          <!-- Dont work -->
                                     </td>
                                 </tr>
                             }

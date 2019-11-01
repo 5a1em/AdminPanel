@@ -1,6 +1,7 @@
 ﻿@model AdminPanel.Models.Country
 
-@using (Html.BeginForm())<!-- Html.BeginForm ломает разметку -->
+<!-- Html.BeginForm ломает разметку -->
+@using (Html.BeginForm())
 {
 @Html.AntiForgeryToken()
 
