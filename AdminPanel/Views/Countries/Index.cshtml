@@ -1,10 +1,8 @@
 ﻿@model IEnumerable<AdminPanel.Models.Country>
 
 @{
-    ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
 
 <section class="content-header">
     <h1>
@@ -28,7 +26,7 @@
                 <!-- /.box-header -->
                 <div class="box-body">
                     <p>
-                        @Html.ActionLink("Создать новый", "Create")
+                        @Html.ActionLink("Создать новую запись", "Create")
                     </p>
                     <table id="example" class="table table-striped table-bordered">
                         <thead>
