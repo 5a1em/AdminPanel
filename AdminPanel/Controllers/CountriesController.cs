@@ -75,7 +75,8 @@ namespace AdminPanel.Controllers
         }
 
         // GET: Countries/Delete/5
-        public ActionResult Delete(int? id)
+        [HttpGet]
+        public ActionResult Delete(int ?id)
         {
             if (id == null)
             {
@@ -90,9 +91,8 @@ namespace AdminPanel.Controllers
         }
 
         // POST: Countries/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             Country country = db.Countries.Find(id);
             db.Countries.Remove(country);

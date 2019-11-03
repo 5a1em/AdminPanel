@@ -5,6 +5,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
+
 <section class="content-header">
     <h1>
         Таблицы
@@ -35,17 +36,32 @@
                                 <th>Действия</th>
                             </tr>
                         </thead>
-                        <tbody>
+
+                        <tbody id="table-body">
                             @foreach (var item in Model)
                             {
                                 <tr>
                                     <td>@Html.DisplayFor(modelItem => item.Name)</td>
                                     <td>
                                         @Html.ActionLink("Редактировать", "Edit", new { id = item.CountryId }) |
-                                        <a href="" onclick="Delete('@item.CountryId')">Удалить</a>          <!-- Dont work -->
+                                        @Ajax.ActionLink("Удалить", "Delete",
+                                    new AjaxOptions
+                                    {
+                                        Url = @Url.Action("Delete", "Countries",
+                                    new
+                                    {
+                                        id = @item.CountryId
+                                    }),
+                                        Confirm = "Вы действительно хотите удалить запись?",
+                                        HttpMethod = "POST",
+                                        //UpdateTargetId = "table"
+                                        OnSuccess = "window.location.reload();",
+                                    })
                                     </td>
                                 </tr>
                             }
+                        </tbody>
+
                     </table>
                 </div>
                 <!-- /.box-body -->
@@ -66,32 +82,4 @@
     $(function () {
         $('#example').DataTable();
     });
-    function Delete(id) {
-        var txt;
-        var r = confirm("Вы действительно хотите удалить строку?");
- 
-        if (r == true) {
-
-            $.ajax(
-            {
-                type: "POST",
-                url: '@Url.Action("Delete", "Countries")',
-                data: {
-                    id: id
-                },
-                error: function (result) {
-                    alert("Ошибка");
-                },
-                success: function (result) {
-                    if (result == true) {
-                        var baseUrl="/Countries";
-                        window.location.reload();
-                    }
-                    else {
-                        alert("There is a problem, Try Later!");
-                    }
-                }
-            });
-        }
-    }
 </script>
