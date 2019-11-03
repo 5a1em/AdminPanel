@@ -77,25 +77,9 @@ namespace AdminPanel.Controllers
             return View(region);
         }
 
-        // GET: Regions/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Region region = db.Regions.Find(id);
-            if (region == null)
-            {
-                return HttpNotFound();
-            }
-            return View(region);
-        }
-
         // POST: Regions/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             Region region = db.Regions.Find(id);
             db.Regions.Remove(region);

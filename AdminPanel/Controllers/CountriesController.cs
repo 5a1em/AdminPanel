@@ -72,22 +72,6 @@ namespace AdminPanel.Controllers
             return View(country);
         }
 
-        // GET: Countries/Delete/5
-        [HttpGet]
-        public ActionResult Delete(int ?id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Country country = db.Countries.Find(id);
-            if (country == null)
-            {
-                return HttpNotFound();
-            }
-            return View(country);
-        }
-
         // POST: Countries/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
