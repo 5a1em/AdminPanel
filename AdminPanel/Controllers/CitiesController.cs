@@ -32,7 +32,6 @@ namespace AdminPanel.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "CityId,Name,RegionId")] City city)
         {
             if (ModelState.IsValid)
@@ -66,7 +65,6 @@ namespace AdminPanel.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public ActionResult Edit([Bind(Include = "CityId,Name,RegionId")] City city)
         {
             if (ModelState.IsValid)
@@ -79,25 +77,9 @@ namespace AdminPanel.Controllers
             return View(city);
         }
 
-        // GET: Cities/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            City city = db.Cities.Find(id);
-            if (city == null)
-            {
-                return HttpNotFound();
-            }
-            return View(city);
-        }
-
         // POST: Cities/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        [HttpPost]
+        public ActionResult Delete(int id)
         {
             City city = db.Cities.Find(id);
             db.Cities.Remove(city);
