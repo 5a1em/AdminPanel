@@ -262,7 +262,6 @@
     <Content Include="Views\Regions\Edit.cshtml" />
     <Content Include="Views\Regions\Index.cshtml" />
     <Content Include="Views\Cities\Create.cshtml" />
-    <Content Include="Views\Cities\Delete.cshtml" />
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Views\Tours\Create.cshtml" />

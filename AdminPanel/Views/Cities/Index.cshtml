@@ -1,38 +1,86 @@
 ﻿@model IEnumerable<AdminPanel.Models.City>
 
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<section class="content-header">
+    <h1>
+        Таблицы
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Home"><i class="fa fa-home"></i> Домой</a></li>
+        <li class="active"><i class="fa fa-table"></i> Таблицы</li>
+        <li class="active"><i class="fa fa-university"></i> Города</li>
+    </ol>
+</section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Region.Name)
-        </th>
-        <th></th>
-    </tr>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Города</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>
+                        @Html.ActionLink("Создать новую запись", "Create")
+                    </p>
+                    <table id="example" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Город</th>
+                                <th>Регион</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Region.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CityId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CityId })
-        </td>
-    </tr>
-}
+                        <tbody id="table-body">
+                            @foreach (var item in Model)
+                            {
+                                <tr>
+                                    <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                                    <td>@Html.DisplayFor(modelItem => item.Region.Name)</td>
+                                    <td>
+                                        @Html.ActionLink("Редактировать", "Edit", new { id = item.CityId }) |
+                                        @Ajax.ActionLink("Удалить", "Delete",
+                                    new AjaxOptions
+                                    {
+                                        Url = @Url.Action("Delete", "Cities",
+                                    new
+                                    {
+                                        id = @item.CityId
+                                    }),
+                                        Confirm = "Вы действительно хотите удалить запись?",
+                                        HttpMethod = "POST",
+                                        //UpdateTargetId = "table"
+                                        OnSuccess = "window.location.reload();",
+                                    })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
 
-</table>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+<!-- DataTables -->
+<script src="~/wwwroot/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/wwwroot/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example').DataTable();
+    });
+</script>
