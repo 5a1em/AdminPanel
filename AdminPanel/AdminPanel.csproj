@@ -265,7 +265,6 @@
     <Content Include="Views\Cities\Edit.cshtml" />
     <Content Include="Views\Cities\Index.cshtml" />
     <Content Include="Views\Tours\Create.cshtml" />
-    <Content Include="Views\Tours\Delete.cshtml" />
     <Content Include="Views\Tours\Details.cshtml" />
     <Content Include="Views\Tours\Edit.cshtml" />
     <Content Include="Views\Tours\Index.cshtml" />

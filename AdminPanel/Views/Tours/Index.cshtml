@@ -1,63 +1,93 @@
 ﻿@model IEnumerable<AdminPanel.Models.Tour>
 
 @{
-    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<section class="content-header">
+    <h1>
+        Таблицы
+    </h1>
+    <ol class="breadcrumb">
+        <li><a href="/Home"><i class="fa fa-home"></i> Домой</a></li>
+        <li class="active"><i class="fa fa-table"></i> Таблицы</li>
+        <li class="active"><i class="fa fa-plane"></i> Туры</li>
+    </ol>
+</section>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Image)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City.Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.City1.Name)
-        </th>
-        <th></th>
-    </tr>
+<!-- Main content -->
+<section class="content">
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="box">
+                <div class="box-header">
+                    <h3 class="box-title">Туры</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="box-body">
+                    <p>
+                        @Html.ActionLink("Создать новую запись", "Create")
+                    </p>
+                    <table id="example" class="table table-striped table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Цена</th>
+                                <th>Дата вылета</th>
+                                <th>Дата возвращения</th>
+                                <th>Из города</th>
+                                <th>В город</th>
+                                <th>Действия</th>
+                            </tr>
+                        </thead>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EndDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Image)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City.Name)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City1.Name)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TourId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TourId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TourId })
-        </td>
-    </tr>
-}
+                        <tbody id="table-body">
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                <td>@Html.DisplayFor(modelItem => item.Price) руб.</td>
+                                <td>@item.StartDate.ToShortDateString()</td>
+                                <td>@item.EndDate.ToShortDateString()</td>
+                                <td>@Html.DisplayFor(modelItem => item.City.Name)</td>
+                                <td>@Html.DisplayFor(modelItem => item.City1.Name)</td>
+                                <td>
+                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.TourId }) |
+                                    @Html.ActionLink("Детали", "Details", new { id = item.TourId }) |
+                                    @Ajax.ActionLink("Удалить", "Delete",
+                                new AjaxOptions
+                                {
+                                    Url = @Url.Action("Delete", "Tours",
+                                new
+                                {
+                                    id = @item.TourId
+                                }),
+                                    Confirm = "Вы действительно хотите удалить запись?",
+                                    HttpMethod = "POST",
+                                    //UpdateTargetId = "table"
+                                    OnSuccess = "window.location.reload();",
+                                })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
 
-</table>
+                    </table>
+                </div>
+                <!-- /.box-body -->
+            </div>
+            <!-- /.box -->
+        </div>
+        <!-- /.col -->
+    </div>
+    <!-- /.row -->
+</section>
+
+<!-- DataTables -->
+<script src="~/wwwroot/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="~/wwwroot/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+
+<!-- page script -->
+<script>
+    $(function () {
+        $('#example').DataTable();
+    });
+</script>
