@@ -1,48 +1,51 @@
 ﻿@model AdminPanel.Models.City
 
-@{
-    ViewBag.Title = "Create";
-}
+<section class="content-header">
+    <h1>
+        Города
+    </h1>
+</section>
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>City</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
+<!-- Main content -->
+<section class="content container-fluid">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Добавить город</h3>
         </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" method="post" action="Create">
+            <div class="box-body">
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Город</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Name" placeholder="Название города">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Регион</label>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.RegionId, "RegionId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-default">@Html.ActionLink("Отмена", "Index")</button>
+                <button type="submit" class="btn btn-info pull-right">Создать</button>
             </div>
-        </div>
+            <!-- /.box-footer -->
+        </form>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <!-- /.box -->
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/jquery-3.3.1.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 }
