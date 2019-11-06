@@ -1,66 +1,80 @@
 ﻿@model AdminPanel.Models.Tour
 
-@{
-    ViewBag.Title = "Details";
-}
+<section class="content-header">
+    <h1>
+        Туры
+    </h1>
+</section>
 
-<h2>Details</h2>
+<!-- Main content -->
+<section class="content container-fluid">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Детали тура</h3>
+        </div>
+        <!-- /.box-header -->
+        <div class="box-body">
 
-<div>
-    <h4>Tour</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Price)
-        </dt>
+            <div class="container">
+                <dl class="dl-horizontal">
+                    <dt>
+                        Вылет из 
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Price)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.City.Region.Country.Name) -
+                        @Html.DisplayFor(model => model.City.Region.Name) -
+                        @Html.DisplayFor(model => model.City.Name)
+                    </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </dt>
+                    <dt>
+                        Тур в 
+                    </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StartDate)
-        </dd>
+                    <dd>
+                        @Html.DisplayFor(model => model.City1.Region.Country.Name) -
+                        @Html.DisplayFor(model => model.City1.Region.Name) -
+                        @Html.DisplayFor(model => model.City1.Name)
+                    </dd>
+                    
+                    <dt>
+                        Дата вылета
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.EndDate)
-        </dt>
+                    <dd>
+                        @Model.StartDate.ToShortDateString()
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.EndDate)
-        </dd>
+                    <dt>
+                        Дата возвращения
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Image)
-        </dt>
+                    <dd>
+                        @Model.EndDate.ToShortDateString()
+                    </dd>
 
-        <dd>
-            @Html.DisplayFor(model => model.Image)
-        </dd>
+                    <dt>
+                        Цена
+                    </dt>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City.Name)
-        </dt>
+                    <dd>
+                        @Decimal.ToDouble(Model.Price) руб.
+                    </dd>
+                </dl>
 
-        <dd>
-            @Html.DisplayFor(model => model.City.Name)
-        </dd>
+            </div>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City1.Name)
-        </dt>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-default">
+                    @Html.ActionLink("Вернуться назад", "Index")
+                </button>
+                <button class="btn btn-default pull-right">
+                    @Html.ActionLink("Редактировать", "Edit", new { id = Model.TourId })
+                </button>
 
-        <dd>
-            @Html.DisplayFor(model => model.City1.Name)
-        </dd>
-
-    </dl>
-</div>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { id = Model.TourId }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+            </div>
+            <!-- /.box-footer -->
+            <!-- /.box -->
+</section>
