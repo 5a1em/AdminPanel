@@ -1,80 +1,77 @@
 ﻿@model AdminPanel.Models.Tour
 
-@{
-    ViewBag.Title = "Create";
-}
+<section class="content-header">
+    <h1>
+        Туры
+    </h1>
+</section>
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Tour</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
-            </div>
+<!-- Main content -->
+<section class="content container-fluid">
+    <!-- Horizontal Form -->
+    <div class="box box-info">
+        <div class="box-header with-border">
+            <h3 class="box-title">Добавить тур</h3>
         </div>
+        <!-- /.box-header -->
+        <!-- form start -->
+        <form class="form-horizontal" method="post" action="Create">
+            <div class="box-body">
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.StartDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Цена</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="Price" placeholder="Цена">
+                        @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Дата вылета</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="StartDate" placeholder="Дата вылета">
+                        @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.FromCityId, "FromCityId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.FromCityId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Дата возвращения</label>
+                    <div class="col-sm-10">
+                        <input type="text" class="form-control" name="EndDate" placeholder="Дата возвращения">
+                        @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.ToCityId, "ToCityId", htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.DropDownList("ToCityId", null, htmlAttributes: new { @class = "form-control" })
-                @Html.ValidationMessageFor(model => model.ToCityId, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">Из города</label>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("FromCityId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="inputEmail3" class="col-sm-2 control-label">В город</label>
+                    <div class="col-sm-10">
+                        @Html.DropDownList("ToCityId", null, htmlAttributes: new { @class = "form-control" })
+                    </div>
+                </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
             </div>
-        </div>
+            <!-- /.box-body -->
+            <div class="box-footer">
+                <button class="btn btn-default">@Html.ActionLink("Отмена", "Index")</button>
+                <button type="submit" class="btn btn-info pull-right">Создать</button>
+            </div>
+            <!-- /.box-footer -->
+        </form>
     </div>
-}
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
+    <!-- /.box -->
+</section>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/scripts/jquery-3.3.1.js")
+    @Scripts.Render("~/scripts/jquery.unobtrusive-ajax.js")
 }
