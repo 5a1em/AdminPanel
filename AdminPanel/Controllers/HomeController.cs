@@ -13,16 +13,18 @@ namespace AdminPanel.Controllers
             return View();
         }
 
-        public ActionResult About()
+        [HttpPost]
+        public ActionResult List(string fromCity, string toWhere, DateTime? startDate = null, int days = 0)
         {
-            ViewBag.Message = "Your application description page.";
 
-            return View();
-        }
 
-        public ActionResult Contact()
-        {
-            ViewBag.Message = "Your contact page.";
+
+
+
+
+
+
+
 
             return View();
         }
