@@ -79,7 +79,14 @@ namespace AdminPanel.Controllers
             Country country = db.Countries.Find(id);
             db.Countries.Remove(country);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return PartialView("CountriesTable", db.Countries.ToList());
+            //return RedirectToAction("ReloadTable");
+        }
+
+        public ActionResult ReloadTable()
+        {
+            return PartialView(db.Countries.ToList());
         }
 
         protected override void Dispose(bool disposing)
