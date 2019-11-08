@@ -84,7 +84,8 @@ namespace AdminPanel.Controllers
             Region region = db.Regions.Find(id);
             db.Regions.Remove(region);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return PartialView("RegionsTable", db.Regions.Include(r => r.Country).ToList());
         }
 
         protected override void Dispose(bool disposing)

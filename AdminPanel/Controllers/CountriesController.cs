@@ -81,12 +81,6 @@ namespace AdminPanel.Controllers
             db.SaveChanges();
 
             return PartialView("CountriesTable", db.Countries.ToList());
-            //return RedirectToAction("ReloadTable");
-        }
-
-        public ActionResult ReloadTable()
-        {
-            return PartialView(db.Countries.ToList());
         }
 
         protected override void Dispose(bool disposing)

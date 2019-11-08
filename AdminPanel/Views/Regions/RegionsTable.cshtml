@@ -1,0 +1,44 @@
+﻿@model IEnumerable<AdminPanel.Models.Region>
+
+<table id="example" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Регион</th>
+            <th>Страна</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+
+    <tbody id="table-body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Country.Name)</td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.RegionId }) |
+                    @Ajax.ActionLink("Удалить", "Delete",
+                new AjaxOptions
+                {
+                    Url = @Url.Action("Delete", "Regions",
+                new
+                {
+                    id = @item.RegionId
+                }),
+                    Confirm = "Вы действительно хотите удалить запись?",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "regions-table"
+                })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<!-- page script -->
+<script>
+    $(function f () {
+        $('#example').DataTable();
+    });
+</script>

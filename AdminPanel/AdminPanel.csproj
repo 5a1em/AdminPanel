@@ -279,6 +279,7 @@
     <Content Include="Views\Shared\_MainMenu.cshtml" />
     <Content Include="Views\Home\TourTable.cshtml" />
     <Content Include="Views\Countries\CountriesTable.cshtml" />
+    <Content Include="Views\Regions\RegionsTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

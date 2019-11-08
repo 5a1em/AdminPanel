@@ -28,42 +28,11 @@
                     <p>
                         @Html.ActionLink("Создать новую запись", "Create")
                     </p>
-                    <table id="example" class="table table-striped table-bordered">
-                        <thead>
-                            <tr>
-                                <th>Регион</th>
-                                <th>Страна</th>
-                                <th>Действия</th>
-                            </tr>
-                        </thead>
 
-                        <tbody id="table-body"> 
-                            @foreach (var item in Model)
-                            {
-                            <tr>
-                                <td>@Html.DisplayFor(modelItem => item.Name)</td>
-                                <td>@Html.DisplayFor(modelItem => item.Country.Name)</td>
-                                <td>
-                                    @Html.ActionLink("Редактировать", "Edit", new { id = item.RegionId }) |
-                                    @Ajax.ActionLink("Удалить", "Delete",
-                                new AjaxOptions
-                                {
-                                    Url = @Url.Action("Delete", "Regions",
-                                new
-                                {
-                                    id = @item.RegionId
-                                }),
-                                    Confirm = "Вы действительно хотите удалить запись?",
-                                    HttpMethod = "POST",
-                                    //UpdateTargetId = "table"
-                                    OnSuccess = "window.location.reload();",
-                                })
-                                </td>
-                            </tr>
-                            }
-                        </tbody>
+                    <div id="regions-table">
+                        @Html.Partial("RegionsTable")
+                    </div>
 
-                    </table>
                 </div>
                 <!-- /.box-body -->
             </div>
@@ -73,14 +42,3 @@
     </div>
     <!-- /.row -->
 </section>
-
-<!-- DataTables -->
-<script src="~/wwwroot/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
-<script src="~/wwwroot/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-
-<!-- page script -->
-<script>
-    $(function () {
-        $('#example').DataTable();
-    });
-</script>
