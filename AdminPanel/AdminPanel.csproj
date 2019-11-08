@@ -280,6 +280,7 @@
     <Content Include="Views\Home\TourTable.cshtml" />
     <Content Include="Views\Countries\CountriesTable.cshtml" />
     <Content Include="Views\Regions\RegionsTable.cshtml" />
+    <Content Include="Views\Cities\CitiesTable.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

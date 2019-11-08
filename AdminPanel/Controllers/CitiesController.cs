@@ -84,7 +84,8 @@ namespace AdminPanel.Controllers
             City city = db.Cities.Find(id);
             db.Cities.Remove(city);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return PartialView("CitiesTable", db.Cities.Include(c => c.Region).ToList());
         }
 
         protected override void Dispose(bool disposing)

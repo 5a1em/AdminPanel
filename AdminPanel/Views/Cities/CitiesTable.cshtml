@@ -1,0 +1,43 @@
+﻿@model IEnumerable<AdminPanel.Models.City>
+
+<table id="example" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Город</th>
+            <th>Регион</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+
+    <tbody id="table-body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Region.Name)</td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.CityId }) |
+                    @Ajax.ActionLink("Удалить", "Delete",
+                new AjaxOptions
+                {
+                    Url = @Url.Action("Delete", "Cities",
+                new
+                {
+                    id = @item.CityId
+                }),
+                    Confirm = "Вы действительно хотите удалить запись?",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "cities-table"
+                })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- page script -->
+<script>
+    $(function f () {
+        $('#example').DataTable();
+    });
+</script>
