@@ -21,9 +21,44 @@ namespace AdminPanel.Controllers
         }
 
         [HttpPost]
-        public ActionResult List(string fromCity, string toWhere, DateTime? startDate = null, int days = 0)
+        public ActionResult Index(string fromCity, string toWhere, DateTime? startDate = null, int days = 0)
         {
-            return View();
+            if(startDate == null && days == 0)
+            {
+                var tours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.Name == fromCity &&
+                (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere));
+
+                return View(tours.ToList());
+            }
+            else if(startDate == null && days != 0)
+            {
+                var tours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.Name == fromCity &&
+                (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere));
+
+                return View(tours.ToList().Where(t => (SubDate(t.StartDate, t.EndDate) == days)));
+            }
+            else if(startDate != null && days == 0)
+            {
+                var tours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.Name == fromCity &&
+                (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere) &&
+                (t.StartDate == startDate));
+
+                return View(tours.ToList());
+            }
+            else
+            {
+                var tours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.Name == fromCity &&
+                (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere) &&
+                (t.StartDate == startDate));
+
+                return View(tours.ToList().Where(t => (SubDate(t.StartDate, t.EndDate) == days)));
+            }
+        }
+
+        private static int SubDate(DateTime startDate, DateTime endDate)
+        {
+            TimeSpan sub = endDate - startDate;
+            return sub.Days;
         }
     }
 }
