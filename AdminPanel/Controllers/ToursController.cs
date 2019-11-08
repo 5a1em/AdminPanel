@@ -96,21 +96,6 @@ namespace AdminPanel.Controllers
             return View(tour);
         }
 
-        // GET: Tours/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Tour tour = db.Tours.Find(id);
-            if (tour == null)
-            {
-                return HttpNotFound();
-            }
-            return View(tour);
-        }
-
         // POST: Tours/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
@@ -118,7 +103,8 @@ namespace AdminPanel.Controllers
             Tour tour = db.Tours.Find(id);
             db.Tours.Remove(tour);
             db.SaveChanges();
-            return RedirectToAction("Index");
+
+            return PartialView("ToursTable", db.Tours.Include(t => t.City).Include(t => t.City1).ToList());
         }
 
         protected override void Dispose(bool disposing)

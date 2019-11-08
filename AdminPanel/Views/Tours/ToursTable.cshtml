@@ -1,0 +1,51 @@
+﻿@model IEnumerable<AdminPanel.Models.Tour>
+
+<table id="example" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Из города</th>
+            <th>В город</th>
+            <th>Дата вылета</th>
+            <th>Дата возвращения</th>
+            <th>Цена</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+
+    <tbody id="table-body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.City.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.City1.Name)</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.EndDate.ToShortDateString()</td>
+                <td>@Html.DisplayFor(modelItem => item.Price) руб.</td>
+                <td>
+                    @Html.ActionLink("Редактировать", "Edit", new { id = item.TourId }) |
+                    @Html.ActionLink("Детали", "Details", new { id = item.TourId }) |
+                    @Ajax.ActionLink("Удалить", "Delete",
+                new AjaxOptions
+                {
+                    Url = @Url.Action("Delete", "Tours",
+                new
+                {
+                    id = @item.TourId
+                }),
+                    Confirm = "Вы действительно хотите удалить запись?",
+                    HttpMethod = "POST",
+                    UpdateTargetId = "tours-table"
+                })
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>
+
+<!-- page script -->
+<script>
+    $(function f() {
+        $('#example').DataTable();
+    });
+</script>
