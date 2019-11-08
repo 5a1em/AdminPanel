@@ -17,25 +17,25 @@ namespace AdminPanel.Controllers
         public ActionResult Index()
         {
             var tours = db.Tours.Include(t => t.City).Include(t => t.City1);
-            return View(tours.ToList());
+            return View(tours.ToList()) ;
         }
 
         [HttpPost]
-        public ActionResult Index(string fromCity, string toWhere, DateTime? startDate = null, int days = 0)
+        public ActionResult TourTable(string fromCity, string toWhere, DateTime? startDate = null, int days = 0)
         {
             if(startDate == null && days == 0)
             {
                 var tours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.Name == fromCity &&
                 (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere));
 
-                return View(tours.ToList());
+                return PartialView(tours.ToList());
             }
             else if(startDate == null && days != 0)
             {
                 var tours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.Name == fromCity &&
                 (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere));
 
-                return View(tours.ToList().Where(t => (SubDate(t.StartDate, t.EndDate) == days)));
+                return PartialView(tours.ToList().Where(t => (SubDate(t.StartDate, t.EndDate) == days)));
             }
             else if(startDate != null && days == 0)
             {
@@ -43,7 +43,7 @@ namespace AdminPanel.Controllers
                 (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere) &&
                 (t.StartDate == startDate));
 
-                return View(tours.ToList());
+                return PartialView(tours.ToList());
             }
             else
             {
@@ -51,7 +51,7 @@ namespace AdminPanel.Controllers
                 (t.City1.Name == toWhere || t.City1.Region.Name == toWhere || t.City1.Region.Country.Name == toWhere) &&
                 (t.StartDate == startDate));
 
-                return View(tours.ToList().Where(t => (SubDate(t.StartDate, t.EndDate) == days)));
+                return PartialView(tours.ToList().Where(t => (SubDate(t.StartDate, t.EndDate) == days)));
             }
         }
 

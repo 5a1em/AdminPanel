@@ -1,0 +1,27 @@
+﻿@model IEnumerable<AdminPanel.Models.Tour>
+
+<table id="example" class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>Откуда</th>
+            <th>Куда</th>
+            <th>Дата вылета</th>
+            <th>Дата возвращения</th>
+            <th>Цена</th>
+        </tr>
+    </thead>
+
+    <tbody id="table-body">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.City.Name)</td>
+                <td>@string.Format("{0} - {1} - {2}", @item.City1.Region.Country.Name, @item.City1.Region.Name, @item.City1.Name)</td>
+                <td>@item.StartDate.ToShortDateString()</td>
+                <td>@item.EndDate.ToShortDateString()</td>
+                <td>@Html.DisplayFor(modelItem => item.Price) руб.</td>
+            </tr>
+        }
+    </tbody>
+
+</table>
