@@ -10,24 +10,73 @@
 namespace AdminPanel.Models
 {
     using System;
+    using System.Collections;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    
+    using System.Linq;
+
+
     public partial class DatabaseEntities : DbContext
     {
         public DatabaseEntities()
             : base("name=DatabaseEntities")
         {
         }
-    
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
+
         }
-    
+      
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
+
+        static DatabaseEntities()
+        {
+            Database.SetInitializer<DatabaseEntities>(new MyDbInitializer());
+        }
+    }
+
+    class MyDbInitializer : CreateDatabaseIfNotExists<DatabaseEntities>
+    {
+        protected override void Seed(DatabaseEntities db)
+        {
+            var cityGenerator = new Bogus.Faker<City>("ru")
+               .StrictMode(false)
+               .RuleFor(x => x.Name, f => f.Address.City());
+
+            var regionGenerator = new Bogus.Faker<Region>("ru")
+              .StrictMode(false)
+              .RuleFor(x => x.Name, f => f.Address.State())
+              .RuleFor(x => x.Cities, f => cityGenerator.Generate(3));
+
+            var countryGenerator = new Bogus.Faker<Country>("ru")
+                .StrictMode(false)
+                .RuleFor(x => x.Name, f => f.Address.Country())
+                .RuleFor(x => x.Regions, f => regionGenerator.Generate(3));
+
+            var genaratedAddress = countryGenerator.Generate(3); // Страны + регионы + города
+            db.Countries.AddRange(genaratedAddress);
+            db.SaveChanges();
+
+
+            var cities = db.Cities.ToList();
+
+            var tourGenerator = new Bogus.Faker<Tour>("ru")
+                .StrictMode(false)
+                .RuleFor(x => x.City, f => f.PickRandom<City>(cities))
+                .RuleFor(x => x.City1, f => f.PickRandom<City>(cities))
+                .RuleFor(x => x.Price, f => f.Random.Int(10000, 100000))
+                .RuleFor(x => x.StartDate, f => f.Date.Future())
+                .RuleFor(x => x.EndDate, f => f.Date.Future());
+
+            var genaratedTours = tourGenerator.Generate(50);
+            db.Tours.AddRange(genaratedTours);
+            db.SaveChanges();
+        }
+
     }
 }
