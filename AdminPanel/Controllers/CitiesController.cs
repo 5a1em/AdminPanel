@@ -82,6 +82,11 @@ namespace AdminPanel.Controllers
         public ActionResult Delete(int id)
         {
             City city = db.Cities.Find(id);
+
+            var dependentTours = db.Tours.Include(t => t.City).Include(t => t.City1).Where(t => t.City.CityId == id || t.City1.CityId == id);
+            db.Tours.RemoveRange(dependentTours);
+            db.SaveChanges();
+
             db.Cities.Remove(city);
             db.SaveChanges();
 
