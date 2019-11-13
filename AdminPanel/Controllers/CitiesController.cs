@@ -24,7 +24,7 @@ namespace AdminPanel.Controllers
         // GET: Cities/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name");
             return View();
         }
@@ -59,7 +59,7 @@ namespace AdminPanel.Controllers
                 return HttpNotFound();
             }
 
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name", city.RegionId);
             return View(city);
         }
