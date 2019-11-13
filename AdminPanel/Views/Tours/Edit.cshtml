@@ -20,40 +20,7 @@
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 @Html.HiddenFor(model => model.TourId)
 
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Из страны</label>
-                    <div class="col-sm-10">
-                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @id = "countries-list-from", @onchange = "CountryIsChanged(true);" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Из региона</label>
-                    <div class="col-sm-10" id="region-list-from"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">Из города</label>
-                    <div class="col-sm-10" id="city-list-from"></div>
-                </div>
-
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">В страну</label>
-                    <div class="col-sm-10">
-                        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @id = "countries-list-to", @onchange = "CountryIsChanged(false);" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">В регион</label>
-                    <div class="col-sm-10" id="region-list-to"></div>
-                </div>
-
-                <div class="form-group">
-                    <label for="inputEmail3" class="col-sm-2 control-label">В город</label>
-                    <div class="col-sm-10" id="city-list-to"></div>
-                </div>
+                @Html.Partial("AddressForm")
 
                 <div class="form-group">
                     <label for="inputEmail3" class="col-sm-2 control-label">Дата вылета</label>
@@ -90,58 +57,3 @@
     </div>
     <!-- /.box -->
 </section>
-
-<script>
-    // Заполняет поля 'в регион' и 'из региона' при старте страницы
-    CountryIsChanged(false);
-    CountryIsChanged(true);
-
-    function CountryIsChanged(from) {
-        var countryId;
-
-        if (from) { countryId = document.getElementById("countries-list-from").value; }
-        else { countryId = document.getElementById("countries-list-to").value; }
-
-        $.ajax(
-            {
-                url: '@Url.Action("CountryIsChangedDropDownList", "Tours")',
-                data: {
-                    countryId: countryId
-                },
-                error: () => alert("Невозможно загрузить список регионов в соответсвии с выбранной страной"),
-                success: function (result) {
-                    if (from) {
-                        $('#region-list-from').html(result);
-                        RegionIsChanged('region-list-from');
-                    }
-                    else {
-                        $('#region-list-to').html(result);
-                        RegionIsChanged('region-list-to');
-                    }
-                }
-            }
-        );
-    }
-
-    function RegionIsChanged(parentId) {
-        var regionId;
-
-        if (parentId == "region-list-from") { regionId = document.getElementById("region-list-from").firstChild.value; }
-        else { regionId = document.getElementById("region-list-to").firstChild.value; }
-
-        $.ajax(
-            {
-                url: '@Url.Action("RegionIsChangedDropDownList", "Tours")',
-                data: {
-                    regionId: regionId
-                },
-                error: () => alert("Невозможно загрузить список городов в соответсвии с выбранным регионом"),
-                success: function (result) {
-                    if (parentId == "region-list-from") { $('#city-list-from').html(result); }
-                    else { $('#city-list-to').html(result) }
-                }
-            }
-        );
-    }
-
-</script>

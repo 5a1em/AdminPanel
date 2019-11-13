@@ -293,6 +293,8 @@
     <Content Include="Views\Cities\RegionDropDownList.cshtml" />
     <Content Include="Views\Tours\RegionDropDownList.cshtml" />
     <Content Include="Views\Tours\CityDropDownList.cshtml" />
+    <Content Include="Views\Cities\AddressForm.cshtml" />
+    <Content Include="Views\Tours\AddressForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

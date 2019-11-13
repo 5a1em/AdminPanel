@@ -1,0 +1,33 @@
+﻿<div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Страна</label>
+    <div class="col-sm-10">
+        @Html.DropDownList("CountryId", null, htmlAttributes: new { @class = "form-control", @id = "countries-list", @onchange = "CountryIsChanged()" })
+    </div>
+</div>
+
+<div class="form-group">
+    <label for="inputEmail3" class="col-sm-2 control-label">Регион</label>
+    <div class="col-sm-10" id="region-list"></div>
+</div>
+
+<script>
+    function CountryIsChanged() {
+        var countryId = document.getElementById("countries-list").value;
+
+        $.ajax(
+            {
+                url: '@Url.Action("CountryIsChangedDropDownList", "Cities")',
+                data: {
+                    countryId: countryId
+                },
+                error: () => alert("Невозможно загрузить список регионов в соответсвии с выбранной страной"),
+                success: function (result) {
+                    $('#region-list').html(result)
+                }
+            }
+        );
+    }
+
+    document.addEventListener("DOMContentLoaded", CountryIsChanged);
+
+</script>
