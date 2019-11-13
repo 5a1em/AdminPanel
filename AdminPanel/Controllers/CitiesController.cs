@@ -41,7 +41,7 @@ namespace AdminPanel.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name", city.RegionId);
             return View(city);
         }
@@ -76,7 +76,7 @@ namespace AdminPanel.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-  
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name", city.RegionId);
             return View(city);
         }

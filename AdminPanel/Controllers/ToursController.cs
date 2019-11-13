@@ -39,7 +39,7 @@ namespace AdminPanel.Controllers
         // GET: Tours/Create
         public ActionResult Create()
         {
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name");
             ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name");
             return View();
@@ -58,6 +58,7 @@ namespace AdminPanel.Controllers
                 return RedirectToAction("Index");
             }
 
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name", tour.FromCityId);
             ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name", tour.ToCityId);
             return View(tour);
@@ -75,7 +76,7 @@ namespace AdminPanel.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name", tour.FromCityId);
             ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name", tour.ToCityId);
             return View(tour);
@@ -93,6 +94,7 @@ namespace AdminPanel.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+            ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
             ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name", tour.FromCityId);
             ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name", tour.ToCityId);
             return View(tour);
@@ -120,7 +122,7 @@ namespace AdminPanel.Controllers
 
         public ActionResult CountryIsChangedDropDownList(int countryId)
         {
-            ViewBag.RegionId = new SelectList(db.Regions.Where(t => t.CountryId == countryId), "RegionId", "Name");
+            ViewBag.RegionId = new SelectList(db.Regions.Where(t => t.CountryId == countryId && t.Cities.Count != 0), "RegionId", "Name");
             return PartialView("RegionDropDownList");
         }
 
