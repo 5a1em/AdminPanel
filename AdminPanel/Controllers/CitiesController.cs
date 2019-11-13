@@ -24,6 +24,7 @@ namespace AdminPanel.Controllers
         // GET: Cities/Create
         public ActionResult Create()
         {
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name");
             return View();
         }
@@ -57,6 +58,8 @@ namespace AdminPanel.Controllers
             {
                 return HttpNotFound();
             }
+
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name", city.RegionId);
             return View(city);
         }
@@ -73,8 +76,15 @@ namespace AdminPanel.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+  
             ViewBag.RegionId = new SelectList(db.Regions, "RegionId", "Name", city.RegionId);
             return View(city);
+        }
+
+        public ActionResult CountryIsChanged(int countryId)
+        {
+            ViewBag.RegionId = new SelectList(db.Regions.Where(t => t.CountryId == countryId), "RegionId", "Name");
+            return PartialView("RegionDropDownList");
         }
 
         // POST: Cities/Delete/5
