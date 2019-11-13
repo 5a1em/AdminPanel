@@ -290,7 +290,7 @@
     <Content Include="Views\Regions\RegionsTable.cshtml" />
     <Content Include="Views\Cities\CitiesTable.cshtml" />
     <Content Include="Views\Tours\ToursTable.cshtml" />
-    <Content Include="Views\Cities\RegionDropDownList.cshtml" />
+    <Content Include="Views\Countries\RegionDropDownList.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />

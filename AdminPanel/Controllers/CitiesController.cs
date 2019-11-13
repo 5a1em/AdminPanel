@@ -81,12 +81,6 @@ namespace AdminPanel.Controllers
             return View(city);
         }
 
-        public ActionResult CountryIsChanged(int countryId)
-        {
-            ViewBag.RegionId = new SelectList(db.Regions.Where(t => t.CountryId == countryId), "RegionId", "Name");
-            return PartialView("RegionDropDownList");
-        }
-
         // POST: Cities/Delete/5
         [HttpPost]
         public ActionResult Delete(int id)
