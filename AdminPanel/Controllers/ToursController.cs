@@ -39,6 +39,7 @@ namespace AdminPanel.Controllers
         // GET: Tours/Create
         public ActionResult Create()
         {
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name");
             ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name");
             return View();
@@ -74,6 +75,7 @@ namespace AdminPanel.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.CountryId = new SelectList(db.Countries, "CountryId", "Name");
             ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name", tour.FromCityId);
             ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name", tour.ToCityId);
             return View(tour);
@@ -115,5 +117,18 @@ namespace AdminPanel.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult CountryIsChangedDropDownList(int countryId)
+        {
+            ViewBag.RegionId = new SelectList(db.Regions.Where(t => t.CountryId == countryId), "RegionId", "Name");
+            return PartialView("RegionDropDownList");
+        }
+
+        public ActionResult RegionIsChangedDropDownList(int regionId)
+        {
+            ViewBag.CityId = new SelectList(db.Cities.Where(t => t.RegionId == regionId), "CityId", "Name");
+            return PartialView("CityDropDownList");
+        }
+
     }
 }

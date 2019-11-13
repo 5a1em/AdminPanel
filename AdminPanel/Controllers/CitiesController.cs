@@ -105,5 +105,11 @@ namespace AdminPanel.Controllers
             }
             base.Dispose(disposing);
         }
+
+        public ActionResult CountryIsChangedDropDownList(int countryId)
+        {
+            ViewBag.RegionId = new SelectList(db.Regions.Where(t => t.CountryId == countryId), "RegionId", "Name");
+            return PartialView("RegionDropDownList");
+        }
     }
 }
