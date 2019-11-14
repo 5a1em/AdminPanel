@@ -90,8 +90,11 @@ namespace AdminPanel.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Edit([Bind(Include = "TourId,Price,StartDate,EndDate,FromCityId,ToCityId,Image")] Tour tour)
+        public ActionResult Edit([Bind(Include = "TourId,Price,StartDate,EndDate,Image")] Tour tour, int[] CityId)
         {
+            tour.ToCityId = CityId[0];
+            tour.FromCityId = CityId[1];
+
             if (ModelState.IsValid)
             {
                 db.Entry(tour).State = EntityState.Modified;
