@@ -49,8 +49,11 @@ namespace AdminPanel.Controllers
         // Чтобы защититься от атак чрезмерной передачи данных, включите определенные свойства, для которых следует установить привязку. Дополнительные 
         // сведения см. в статье https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        public ActionResult Create([Bind(Include = "TourId,Price,StartDate,EndDate,FromCityId,ToCityId,Image")] Tour tour)
+        public ActionResult Create([Bind(Include = "TourId,Price,StartDate,EndDate,Image")] Tour tour, int[] CityId)
         {
+            tour.ToCityId = CityId[0];
+            tour.FromCityId = CityId[1];
+
             if (ModelState.IsValid)
             {
                 db.Tours.Add(tour);
@@ -59,8 +62,9 @@ namespace AdminPanel.Controllers
             }
 
             ViewBag.CountryId = new SelectList(db.Countries.Where(t => t.Regions.Count != 0), "CountryId", "Name");
-            ViewBag.FromCityId = new SelectList(db.Cities, "CityId", "Name", tour.FromCityId);
-            ViewBag.ToCityId = new SelectList(db.Cities, "CityId", "Name", tour.ToCityId);
+            ViewBag.FromCityId = new SelectList(db.Cities, "FromCityId", "Name", tour.FromCityId);
+            ViewBag.ToCityId = new SelectList(db.Cities, "ToCityId", "Name", tour.ToCityId);
+
             return View(tour);
         }
 
