@@ -15,7 +15,6 @@ namespace AdminPanel.Models
     using System.Data.Entity.Infrastructure;
     using System.Linq;
 
-
     public partial class DatabaseEntities : DbContext
     {
         public DatabaseEntities()
@@ -26,20 +25,21 @@ namespace AdminPanel.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             throw new UnintentionalCodeFirstException();
-
         }
-      
+
         public virtual DbSet<City> Cities { get; set; }
         public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<Region> Regions { get; set; }
         public virtual DbSet<Tour> Tours { get; set; }
 
+        /*
         static DatabaseEntities()
         {
             Database.SetInitializer<DatabaseEntities>(new MyDbInitializer());
-        }
+        }*/
     }
 
+    /*
     class MyDbInitializer : CreateDatabaseIfNotExists<DatabaseEntities>
     {
         protected override void Seed(DatabaseEntities db)
@@ -77,6 +77,5 @@ namespace AdminPanel.Models
             db.Tours.AddRange(genaratedTours);
             db.SaveChanges();
         }
-
-    }
+    }*/
 }

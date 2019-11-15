@@ -17,6 +17,7 @@ namespace AdminPanel.Controllers
         public ActionResult Index()
         {
             var tours = db.Tours.Include(t => t.City).Include(t => t.City1);
+            var tmp = tours.ToList();
             return View(tours.ToList()) ;
         }
 

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="Хранилище DatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="Хранилище DatabaseModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Cities">
           <Key>
             <PropertyRef Name="CityId" />
@@ -40,10 +40,8 @@
           <Property Name="ToCityId" Type="int" Nullable="false" />
           <Property Name="Image" Type="varbinary(max)" />
         </EntityType>
-        <Association Name="FK__Cities__RegionId__2A4B4B5E">
-          <End Role="Regions" Type="Self.Regions" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name=" FK__Cities__RegionId__2A4B4B5E">
+          <End Role="Regions" Type="Self.Regions" Multiplicity="1" />
           <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Regions">
@@ -54,10 +52,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Regions__Country__2B3F6F97">
-          <End Role="Countries" Type="Self.Countries" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
+        <Association Name=" FK__Regions__Country__2B3F6F97">
+          <End Role="Countries" Type="Self.Countries" Multiplicity="1" />
           <End Role="Regions" Type="Self.Regions" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Countries">
@@ -68,54 +64,21 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Tours__FromCityI__4BAC3F29">
-          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
-          <End Role="Tours" Type="Self.Tours" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cities">
-              <PropertyRef Name="CityId" />
-            </Principal>
-            <Dependent Role="Tours">
-              <PropertyRef Name="FromCityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Tours__ToCityId__46E78A0C">
-          <End Role="Cities" Type="Self.Cities" Multiplicity="1" />
-          <End Role="Tours" Type="Self.Tours" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Cities">
-              <PropertyRef Name="CityId" />
-            </Principal>
-            <Dependent Role="Tours">
-              <PropertyRef Name="ToCityId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityContainer Name="Хранилище DatabaseModelContainer">
           <EntitySet Name="Cities" EntityType="Self.Cities" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Countries" EntityType="Self.Countries" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Regions" EntityType="Self.Regions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tours" EntityType="Self.Tours" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Cities__RegionId__2A4B4B5E" Association="Self.FK__Cities__RegionId__2A4B4B5E">
+          <AssociationSet Name=" FK__Cities__RegionId__2A4B4B5E" Association="Self. FK__Cities__RegionId__2A4B4B5E">
             <End Role="Regions" EntitySet="Regions" />
             <End Role="Cities" EntitySet="Cities" />
           </AssociationSet>
-          <AssociationSet Name="FK__Regions__Country__2B3F6F97" Association="Self.FK__Regions__Country__2B3F6F97">
+          <AssociationSet Name=" FK__Regions__Country__2B3F6F97" Association="Self. FK__Regions__Country__2B3F6F97">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="Regions" EntitySet="Regions" />
           </AssociationSet>
-          <AssociationSet Name="FK__Tours__FromCityI__4BAC3F29" Association="Self.FK__Tours__FromCityI__4BAC3F29">
-            <End Role="Cities" EntitySet="Cities" />
-            <End Role="Tours" EntitySet="Tours" />
-          </AssociationSet>
-          <AssociationSet Name="FK__Tours__ToCityId__46E78A0C" Association="Self.FK__Tours__ToCityId__46E78A0C">
-            <End Role="Cities" EntitySet="Cities" />
-            <End Role="Tours" EntitySet="Tours" />
-          </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
