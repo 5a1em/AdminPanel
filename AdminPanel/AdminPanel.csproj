@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
@@ -56,8 +56,8 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=2.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
@@ -197,7 +197,26 @@
       <DependentUpon>ModelsFromDb.edmx</DependentUpon>
       <LastGenOutput>ModelsFromDb.cs</LastGenOutput>
     </Content>
+    <Content Include="wwwroot\bower_components\bootstrap\dist\css\bootstrap.min.css" />
+    <Content Include="wwwroot\bower_components\bootstrap\dist\js\bootstrap.js" />
+    <Content Include="wwwroot\bower_components\bootstrap\dist\js\bootstrap.min.js" />
+    <Content Include="wwwroot\bower_components\bootstrap\dist\js\npm.js" />
+    <Content Include="wwwroot\bower_components\datatables.net-bs\css\dataTables.bootstrap.css" />
+    <Content Include="wwwroot\bower_components\datatables.net-bs\css\dataTables.bootstrap.min.css" />
+    <Content Include="wwwroot\bower_components\datatables.net-bs\js\dataTables.bootstrap.min.js" />
+    <Content Include="wwwroot\bower_components\datatables.net\js\jquery.dataTables.min.js" />
+    <Content Include="wwwroot\bower_components\font-awesome\css\font-awesome.css" />
+    <Content Include="wwwroot\bower_components\font-awesome\css\font-awesome.min.css" />
+    <Content Include="wwwroot\bower_components\font-awesome\fonts\fontawesome-webfont.svg" />
+    <Content Include="wwwroot\bower_components\font-awesome\HELP-US-OUT.txt" />
+    <Content Include="wwwroot\bower_components\Ionicons\css\ionicons.min.css" />
+    <Content Include="wwwroot\bower_components\jquery\dist\jquery.min.js" />
+    <Content Include="wwwroot\dist\css\AdminLTE.min.css" />
+    <Content Include="wwwroot\dist\css\skins\skin-blue.min.css" />
     <Content Include="wwwroot\dist\css\ViewingTours.css" />
+    <Content Include="wwwroot\dist\img\admin-200x200.png" />
+    <Content Include="wwwroot\dist\img\tour_image-200x200.svg" />
+    <Content Include="wwwroot\dist\js\adminlte.min.js" />
     <EntityDeploy Include="Models\ModelsFromDb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>ModelsFromDb.Designer.cs</LastGenOutput>
@@ -227,6 +246,7 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
+    <None Include="Properties\PublishProfiles\AdminPanel20191114081732 - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.3.1.js" />
     <Content Include="Scripts\jquery-3.3.1.min.js" />
@@ -293,6 +313,46 @@
     <Content Include="Views\Tours\CityDropDownList.cshtml" />
     <Content Include="Views\Cities\AddressForm.cshtml" />
     <Content Include="Views\Tours\AddressForm.cshtml" />
+    <Content Include="wwwroot\bower_components\bootstrap\dist\css\bootstrap.min.css.map" />
+    <Content Include="wwwroot\bower_components\font-awesome\css\font-awesome.css.map" />
+    <Content Include="wwwroot\dist\css\adminlte.min.css.map" />
+    <Content Include="wwwroot\bower_components\jquery\dist\jquery.min.map" />
+    <Content Include="wwwroot\bower_components\font-awesome\.bower.json" />
+    <Content Include="wwwroot\bower_components\font-awesome\.npmignore" />
+    <Content Include="wwwroot\bower_components\font-awesome\bower.json" />
+    <Content Include="wwwroot\bower_components\font-awesome\fonts\fontawesome-webfont.eot" />
+    <Content Include="wwwroot\bower_components\font-awesome\fonts\fontawesome-webfont.ttf" />
+    <Content Include="wwwroot\bower_components\font-awesome\fonts\fontawesome-webfont.woff" />
+    <Content Include="wwwroot\bower_components\font-awesome\fonts\fontawesome-webfont.woff2" />
+    <Content Include="wwwroot\bower_components\font-awesome\fonts\FontAwesome.otf" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\animated.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\bordered-pulled.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\core.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\fixed-width.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\font-awesome.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\icons.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\larger.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\list.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\mixins.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\path.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\rotated-flipped.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\screen-reader.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\stacked.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\less\variables.less" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\font-awesome.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_animated.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_bordered-pulled.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_core.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_fixed-width.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_icons.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_larger.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_list.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_mixins.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_path.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_rotated-flipped.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_screen-reader.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_stacked.scss" />
+    <Content Include="wwwroot\bower_components\font-awesome\scss\_variables.scss" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="Scripts\index.d.ts" />
@@ -340,7 +400,7 @@
     <PropertyGroup>
       <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
     </PropertyGroup>
-    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
   </Target>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
        Other similar extension points exist, see Microsoft.Common.targets.
